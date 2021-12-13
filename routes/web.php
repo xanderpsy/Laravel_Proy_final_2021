@@ -26,3 +26,8 @@ Route::post('/store', [UserController::class, 'store'])->name('store');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('empleados',App\Http\Controllers\empleadoController::class)->middleware('auth');

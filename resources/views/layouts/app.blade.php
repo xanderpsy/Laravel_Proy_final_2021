@@ -53,6 +53,13 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
+                    @if (Auth::check())
+
+                    <ul class="navbar-nav mr-auto">
+                    <a class="nav-       link" href="{{ route('empleados.index') }}" >{{ __("Empleados") }}</a>
+                    </ul>
+                    @endif
+
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
