@@ -1,6 +1,9 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\Devoluciones;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -30,4 +33,20 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('empleados',App\Http\Controllers\empleadoController::class)->middleware('auth');
+
+//-----------------Ruta para empleados---------------
+Route::resource('empleados','EmpleadoController')->middleware('auth');
+
+
+
+
+
+
+//--------------Rutas de almacen-----------
+
+//Ruta general
+Route::resource('producto','ProductoController');
+//Route::get('producto/create',[ProductoController::class,'create'])->name('producto.create');
+//Route::get('producto/update/{id}',[ProductoController::class,'update'])->name('producto.update');
+//Route::get('producto/show/{id}',[ProductoController::class,'show'])->name('producto.show');
+//Route::delete('producto/{id}',[ProductoController::class,'destroy'])->name('producto.destroy');

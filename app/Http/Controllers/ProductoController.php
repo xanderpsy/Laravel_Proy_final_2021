@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Producto;
+
 
 class ProductoController extends Controller
 {
@@ -13,7 +15,10 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $productos= Producto::all();
+        return view('productos.index',compact('productos'));
+
+        //return view('productos.index');
     }
 
     /**
@@ -23,7 +28,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        return view('productos.create');
     }
 
     /**
@@ -34,7 +39,18 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $producto=new Producto;
+
+        $producto->id=$request->id;
+        $producto->nombre=$request->nombre;
+        $producto->cantidad=$request->cantidad;
+        if($request->hasfile('imagen')):
+            $request['imagen']=$request->file('imagen')->store('uploads','public');
+         endif;
+
+        $producto->foto=$request->imagen;
+        $producto->save();
+        return redirect()->route('producto.index');
     }
 
     /**
@@ -56,7 +72,8 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $producto=Producto::findOrFail($id);
+        return view('productos.edit',compact('producto'));
     }
 
     /**
@@ -68,7 +85,13 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $producto=Producto::findOrFail($id);
+        $producto->id=$request->codigo;
+        $producto->nombre=$request->nombre;
+        $producto->cantidad=$request->cantidad;
+        $producto->foto=$request->imagen;
+        $producto->save();
+        return redirect()->route('producto.index');
     }
 
     /**
@@ -79,6 +102,9 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $producto=Producto::findOrFail($id);
+        $producto->delete();
+         
+        return redirect()->route('producto.index');
     }
 }

@@ -13,7 +13,7 @@ class CreateTableProducto extends Migration
      */
     public function up()
     {
-        Schema::create('producto', function (Blueprint $table) {
+        Schema::create('productos', function (Blueprint $table) {
             $table->bigInteger("id")->primary();
             $table->text("nombre");
             $table->integer("cantidad");
