@@ -31,8 +31,9 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        $empleado = new Empleado();
-        return view('empleado.create', compact('empleado'));
+        //$empleado = new Empleado();
+        //return view('empleado.create', compact('empleado'));
+        return view('empleado.create');
     }
 
     /**

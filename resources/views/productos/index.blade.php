@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <h4>Lista de productos</h4>
+    <h4>Lista de productos a modificar</h4>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
